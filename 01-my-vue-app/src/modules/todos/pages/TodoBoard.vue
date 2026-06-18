@@ -1,27 +1,12 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, inject } from 'vue'
 import TodoForm from '../components/TodoForm.vue'
 import TodoList from '../components/TodoList.vue'
 
 let id = 0
-const todos = ref([])
-const loading = ref(true)
-const error = ref('')
-
-function loadTodos() {
-  if(error.value) error.value = ''; // reset error before fetching
-  fetch('https://dummyjson.com/todos?limit=5') // we can use a separate file for API calls  (a service)
-    .then((response) => response.json())
-    .then((data) => {
-      todos.value = data.todos; // .map(...) if you want to transform the data
-    })
-    .catch((err) => {
-      error.value = 'Failed to load todos'; // handle the error appropriately
-    })
-    .finally(() => {
-      loading.value = false
-    })
-}
+const { todos, loadTodos } = inject('todos')
+const loading = ref(false); // TODO: implement loading state
+const error = ref(''); // TODO: implement error state
 
 onMounted(() => {
   setTimeout(() => {
@@ -29,6 +14,7 @@ onMounted(() => {
   }, 3000) // simulate a delay for loading
 })
 
+// TODO: set in provider
 function addTodo(value) {
   todos.value.push({ id: id++, todo: value, completed: false })
 }

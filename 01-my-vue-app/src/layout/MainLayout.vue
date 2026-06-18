@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref } from 'vue'
+  import TodoCount from '../modules/todos/components/TodoCount.vue';
 
   const theme = ref('light')
 
@@ -16,7 +17,7 @@
         <v-spacer></v-spacer>
         <slot name="menu"></slot>
         <v-spacer></v-spacer>
-        (XX) todos
+        <TodoCount />
         <v-btn
           :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
           text="Toggle Theme"
