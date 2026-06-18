@@ -16,6 +16,7 @@
         <v-spacer></v-spacer>
         <slot name="menu"></slot>
         <v-spacer></v-spacer>
+        (XX) todos
         <v-btn
           :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
           text="Toggle Theme"
