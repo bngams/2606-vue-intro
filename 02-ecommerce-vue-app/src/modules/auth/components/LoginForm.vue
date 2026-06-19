@@ -26,7 +26,6 @@ const handleLogin = () => {
   if (formRef.value && formRef.value.validate()) {
     // Fake login logic
     authStore.login(email.value, password.value)
-    console.log('Logging in with', { email: email.value, password: password.value });
     alert('Logged in successfully (fake action)');
   } else {
     alert('Please fix the form errors before submitting.');

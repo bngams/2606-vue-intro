@@ -11,6 +11,15 @@ describe('HelloWorld.vue', () => {
             props: { msg: defaultPropMsg } 
         });
     })
+
+    it('should handle the msg prop correctly', () => {
+        // wanted result
+        const wantedResult = defaultPropMsg.toUpperCase();
+        // check component msg dipslay
+        const msgFromComponentController = wrapper.getMethods().getMsg();
+        // assertion
+        expect(msgFromComponentController).toBe(wantedResult);
+    })
     
     it('should display the msg prop in h1 title', () => {
         // wanted result
@@ -26,7 +35,8 @@ describe('HelloWorld.vue', () => {
         expect(button).toBeDefined();
 
         await button.trigger('click');
-
+        
+        expect(wrapper.vm.count).toBe(1);
         expect(button.text()).toBe('count is 1');
     })
 });
